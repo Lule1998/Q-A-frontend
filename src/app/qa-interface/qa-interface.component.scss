@@ -1,0 +1,135 @@
+.qa-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: 800px;
+  
+    .qa-header {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+      
+      h1 {
+        margin: 0;
+        text-align: center;
+        color: #333;
+        font-size: 1.5rem;
+      }
+    }
+  
+    .conversation-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      background: #f8f9fa;
+  
+      .messages {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+  
+      .message {
+        max-width: 80%;
+        padding: 1rem;
+        border-radius: 12px;
+        position: relative;
+  
+        &.question {
+          align-self: flex-end;
+          background: #007bff;
+          color: white;
+        }
+  
+        &.answer {
+          align-self: flex-start;
+          background: white;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+  
+        .message-timestamp {
+          font-size: 0.75rem;
+          opacity: 0.7;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  
+    .input-area {
+      padding: 1rem;
+      border-top: 1px solid #eee;
+      background: white;
+  
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+  
+      textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        resize: none;
+        font-family: inherit;
+        
+        &:focus {
+          outline: none;
+          border-color: #007bff;
+          box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+      }
+  
+      button {
+        padding: 0.75rem;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.2s;
+  
+        &:hover:not(:disabled) {
+          background: #0056b3;
+        }
+  
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+  
+  .loading-indicator {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    justify-content: center;
+  
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: #007bff;
+      border-radius: 50%;
+      animation: bounce 1.4s infinite ease-in-out;
+  
+      &:nth-child(1) { animation-delay: -0.32s; }
+      &:nth-child(2) { animation-delay: -0.16s; }
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 80%, 100% { 
+      transform: scale(0);
+    } 
+    40% { 
+      transform: scale(1.0);
+    }
+  }

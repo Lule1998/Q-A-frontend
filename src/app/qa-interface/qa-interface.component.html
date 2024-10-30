@@ -1,0 +1,46 @@
+<div class="qa-container">
+    <div class="qa-header">
+      <h1>Q&A</h1>
+    </div>
+  
+    <div class="conversation-area" #conversationArea>
+      <div class="messages">
+        <div 
+          *ngFor="let message of messages; trackBy: trackByFn"
+          [ngClass]="{'message': true, 'question': message.type === 'question', 'answer': message.type === 'answer'}"
+        >
+          <div class="message-content">{{ message.content }}</div>
+          <div class="message-timestamp">
+            {{ message.timestamp | date:'shortTime' }}
+          </div>
+        </div>
+  
+        <!-- Loading indicator -->
+        <div class="message answer" *ngIf="isLoading">
+          <div class="loading-indicator">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="input-area">
+      <form (ngSubmit)="handleSubmit()" #qaForm="ngForm">
+        <textarea
+          [(ngModel)]="question"
+          name="question"
+          placeholder="Type your question here..."
+          [disabled]="isLoading"
+          rows="3"
+        ></textarea>
+        <button 
+          type="submit" 
+          [disabled]="isLoading || !question.trim()"
+        >
+          {{ isLoading ? 'Getting Answer...' : 'Ask Question' }}
+        </button>
+      </form>
+    </div>
+  </div>
